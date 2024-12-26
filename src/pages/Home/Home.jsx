@@ -3,14 +3,14 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 
 
 
-const Home = () => {
+const Home = ({isSidebarOpen}) => {
   
   
   
   return (
     <>
     <div>
-    <Sidebar />
+    <Sidebar isSidebarOpen={isSidebarOpen}/>
     </div>
     </>
     )

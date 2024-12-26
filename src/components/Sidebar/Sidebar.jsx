@@ -13,50 +13,70 @@ import cameron from "../../assets/cameron.png"
 
 
 
-const Sidebar = () => {
+const Sidebar = ({isSidebarOpen}) => {
   
   
   return (
     <>
-    <div className='mt-[2rem] px-2 pt-[1.5rem] pb-[0.5rem] w-4/12 sm:w-2/12 h-screen text-gray-800 bg-gray-100 flex flex-col gap-2 tracking-wider font-roboto'>
-    <div className='flex flex-row gap-2 text font-medium cursor-pointer'>
+    <div className='mt-[2rem] pl-4 pr-2 pt-[1.5rem] pb-[0.5rem] w-fit text-gray-800 bg-gray-100 flex flex-col gap-3 tracking-wider font-roboto abolute left-0 z-40'>
+    <div className='flex flex-row gap-2 text font-medium cursor-pointer h-[1.5rem]'>
     <IoIosHome size='20'/>
-    <p>Home</p>
+    <p className={`${isSidebarOpen ? "block" : "hidden"}`}>Home</p>
     </div>
-    <div className='flex flex-row gap-2 text font-medium cursor-pointer'>
+    <div className='flex flex-row gap-2 text font-medium cursor-pointer h-[1.5rem]'>
     <IoLogoGameControllerB size='20'/>
-    <p>Games</p>
+    <p className={`${isSidebarOpen ? "block" : "hidden"}`}>Games</p>
     </div>
-    <div className='flex flex-row gap-2 text font-medium cursor-pointer'>
+    <div className='flex flex-row gap-2 text font-medium cursor-pointer h-[1.5rem]'>
     <MdSportsFootball size='20'/>
-    <p>Sports</p>
+    <p className={`${isSidebarOpen ? "block" : "hidden"}`}>Sports</p>
     </div>
-    <div className='flex flex-row gap-2 text font-medium cursor-pointer'>
+    <div className='flex flex-row gap-2 text font-medium cursor-pointer h-[1.5rem]'>
     <SiYoutubeshorts size='20'/>
-    <p>Shorts</p>
+    <p className={`${isSidebarOpen ? "block" : "hidden"}`}>Shorts</p>
     </div>
-    <div className='flex flex-row gap-2 text font-medium cursor-pointer'>
+    <div className='flex flex-row gap-2 text font-medium cursor-pointer h-[1.5rem]'>
     <GrTechnology size='20'/>
-    <p>Technology</p>
+    <p className={`${isSidebarOpen ? "block" : "hidden"}`}>Technology</p>
     </div>
-    <div className='flex flex-row gap-2 text font-medium cursor-pointer'>
+    <div className='flex flex-row gap-2 text font-medium cursor-pointer h-[1.5rem]'>
     <IoIosMusicalNotes size='20'/>
-    <p>Musics</p>
+    <p className={`${isSidebarOpen ? "block" : "hidden"}`}>Musics</p>
     </div>
-    <div className='flex flex-row gap-2 text font-medium cursor-pointer'>
+    <div className='flex flex-row gap-2 text font-medium cursor-pointer h-[1.5rem]'>
     <FaBlogger size='20'/>
-    <p>Blogging</p>
+    <p className={`${isSidebarOpen ? "block" : "hidden"}`}>Blogging</p>
     </div>
-    <div className='flex flex-row gap-2 text font-medium cursor-pointer'>
+    <div className='flex flex-row gap-2 text font-medium cursor-pointer h-[1.5rem]'>
     <FaRegNewspaper size='20'/>
-    <p>News</p>
+    <p className={`${isSidebarOpen ? "block" : "hidden"}`}>News</p>
     </div>
     <hr/>
-    <div>
-    <h3>Subscribers</h3>
-    <div>
-    <img src={ismail} alt='' />
-    <p></p>
+    <div className='flex flex-col gap-3 tracking-tight'>
+    <h3  className={`${isSidebarOpen ? "block" : "hidden"}`}>Subscribed</h3>
+    <div className='flex flex-row items-center gap-2'>
+    <img src={ismail} alt='' className='w-[40px] h-[40px] rounded-full'/>
+    <p className={`${isSidebarOpen ? "block" : "hidden"}`}>Mech Code</p>
+    </div>
+    <div className='flex flex-row items-center gap-2'>
+    <img src={simon} alt='' className='w-[40px] h-[40px] rounded-full'/>
+    <p className={`${isSidebarOpen ? "block" : "hidden"}`}>FreeCodeCamp</p>
+    </div>
+    <div className='flex flex-row items-center gap-2'>
+    <img src={tom} alt='' className='w-[40px] h-[40px] rounded-full'/>
+    <p className={`${isSidebarOpen ? "block" : "hidden"}`}>GreatStack</p>
+    </div>
+    <div className='flex flex-row items-center gap-2'>
+    <img src={cameron} alt='' className='w-[40px] h-[40px] rounded-full'/>
+    <p className={`${isSidebarOpen ? "block" : "hidden"}`}>Thapa Technical</p>
+    </div>
+    <div className='flex flex-row items-center gap-2'>
+    <img src={megan} alt='' className='w-[40px] h-[40px] rounded-full'/>
+    <p className={`${isSidebarOpen ? "block" : "hidden"}`}>Patel MernStack</p>
+    </div>
+    <div className='flex flex-row items-center gap-2'>
+    <img src={gerard} alt='' className='w-[40px] h-[40px] rounded-full'/>
+    <p className={`${isSidebarOpen ? "block" : "hidden"}`}>MrBeast</p>
     </div>
     </div>
     </div>
