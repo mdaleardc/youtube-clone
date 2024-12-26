@@ -17,7 +17,8 @@ import { Link } from "react-router-dom";
 
 
 
-const Feed = () => {
+
+const Recommended = () => {
   
   const thumbnailData = [
   {
@@ -56,27 +57,26 @@ const Feed = () => {
   
   return (
     <>
-    <div className='m-[3rem]'>
-    <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-y-6 gap-x-4 rounded'>
+    <div className='mt[3rem] pt-[0.3rem] flex flex-col gap-4'>
     {
       thumbnailData.map((item, index) => {
+        
         return (
-        <Link to={'video/20/234'} key={index} className='bg-gray-200 rounded-xl  p-1'>
-        <img src={item.thumbnail} alt={`${item} png`} className='rounded-md'/>
-        <h2 className='text-xl tracking-tight'>Name is a letter optionally followed by one or more letter, digits, or underbars</h2>
-        <div className='flex flex-row gap-4 items-center'>
-        <img src={item.profilePic} alt={`${item} png`} className='w-[40px] h-[40px] rounded-full'/>
-        <h3 className='font-semibold'>GreateStack</h3>
-        </div>
+    <div className='grid grid-cols-2 gap-1'>
+        <img src={item.thumbnail} alt={`thumbnail`} />
+        <div>
+        <h4 className='text-sm'>The best video to learn ReacJs</h4>
+        <h3 className='font-medium'>GreateStack</h3>
         <p>34k views &bull; 2 days ago</p>
-        </Link>
+        </div>
+    </div>
         )
       })
     }
-    </div>
     </div>
     </>
     )
 }
 
-export default Feed;
+
+export default Recommended;
