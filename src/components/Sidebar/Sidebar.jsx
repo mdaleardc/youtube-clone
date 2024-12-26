@@ -18,7 +18,7 @@ const Sidebar = ({isSidebarOpen}) => {
   
   return (
     <>
-    <div className='mt-[2rem] pl-4 pr-2 pt-[1.5rem] pb-[0.5rem] w-fit text-gray-800 bg-gray-100 flex flex-col gap-3 tracking-wider font-roboto abolute left-0 z-40'>
+    <div className='mt-[2rem] pl-4 pr-2 pt-[1.5rem] pb-[4rem] w-fit h-screen overflow-y-scroll hide-scrollbar text-gray-800 bg-gray-200 flex flex-col gap-3 tracking-wider font-roboto'>
     <div className='flex flex-row gap-2 text font-medium cursor-pointer h-[1.5rem]'>
     <IoIosHome size='20'/>
     <p className={`${isSidebarOpen ? "block" : "hidden"}`}>Home</p>
@@ -56,7 +56,7 @@ const Sidebar = ({isSidebarOpen}) => {
     <h3  className={`${isSidebarOpen ? "block" : "hidden"}`}>Subscribed</h3>
     <div className='flex flex-row items-center gap-2'>
     <img src={ismail} alt='' className='w-[40px] h-[40px] rounded-full'/>
-    <p className={`${isSidebarOpen ? "block" : "hidden"}`}>Mech Code</p>
+    <p className={`${isSidebarOpen ? "block" : "hidden"}`}>DevCode</p>
     </div>
     <div className='flex flex-row items-center gap-2'>
     <img src={simon} alt='' className='w-[40px] h-[40px] rounded-full'/>
@@ -76,7 +76,7 @@ const Sidebar = ({isSidebarOpen}) => {
     </div>
     <div className='flex flex-row items-center gap-2'>
     <img src={gerard} alt='' className='w-[40px] h-[40px] rounded-full'/>
-    <p className={`${isSidebarOpen ? "block" : "hidden"}`}>MrBeast</p>
+    <p className={`${isSidebarOpen ? "block" : "hidden"}`}>Mech Code</p>
     </div>
     </div>
     </div>

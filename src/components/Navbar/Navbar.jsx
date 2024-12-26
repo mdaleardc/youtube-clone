@@ -1,7 +1,7 @@
-import { IoMdMenu, IoMdSearch, IoMdCloudUpload, IoIosMore, IoMdNotifications } from "react-icons/io";
+import { IoMdSearch, IoMdCloudUpload, IoIosMore, IoMdNotifications } from "react-icons/io";
 import { TbCircleLetterD } from "react-icons/tb";
 import { CgProfile } from "react-icons/cg";
-import { RxCross1 } from "react-icons/rx";
+import { BiMenuAltLeft } from "react-icons/bi";
 
 
 
@@ -12,12 +12,10 @@ const Navbar = ({setIsSidebarOpen, isSidebarOpen}) => {
   return (
     <nav className='w-full h-[3rem] bg-gray-200 grid grid-cols-12 justify-between items-center fixed top-0 left-0 z-50 px-4 gap-2'>
     <div className='flex flex-row gap-2 col-span-3'>
-    {
-    isSidebarOpen ? <RxCross1 size='25' className='cursor-pointer hidden sm:block' onClick={()=>setIsSidebarOpen(prev => !prev)}/> : <IoMdMenu size='25' className='cursor-pointer hidden sm:block' onClick={()=>setIsSidebarOpen(prev => !prev)}/>
-    }
+    <BiMenuAltLeft size='25' className='cursor-pointer hidden sm:block' onClick={()=>setIsSidebarOpen(prev => !prev)}/>
     <div className='flex flex-row items-center gap-2'>
-    <TbCircleLetterD size='25' className='cursor-pointer'/>
-    <h1 className='hidden sm:block align-bottom mt-0.5 font-black'>DevTube</h1>
+    <TbCircleLetterD size='25' className='cursor-pointer text-[#FF0045]'/>
+    <h1 className='hidden sm:block align-bottom mt-0.5 font-black text-[#FF0045]'>DevTube</h1>
     </div>
     </div>
     
