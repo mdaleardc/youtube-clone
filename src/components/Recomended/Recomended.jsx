@@ -62,8 +62,10 @@ const Recommended = () => {
       thumbnailData.map((item, index) => {
         
         return (
-    <div className='grid grid-cols-2 gap-1'>
+    <div className='grid grid-cols-2 gap-1' key={index}>
+    <Link to='video/23/435'>
         <img src={item.thumbnail} alt={`thumbnail`} />
+    </Link>
         <div>
         <h4 className='text-sm'>The best video to learn ReacJs</h4>
         <h3 className='font-medium'>GreateStack</h3>

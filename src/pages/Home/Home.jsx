@@ -1,11 +1,13 @@
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Feed from "../../components/Feed/Feed";
+import { useState } from 'react';
 
 
 
 
 const Home = ({isSidebarOpen}) => {
   
+  const [category, setCategory] = useState(0);
   
   
   return (
@@ -13,10 +15,10 @@ const Home = ({isSidebarOpen}) => {
     <div>
     
     <div className='fixed top-0 left-0 z-40'>
-    <Sidebar isSidebarOpen={isSidebarOpen}/>
+    <Sidebar isSidebarOpen={isSidebarOpen} category={category} setCategory={setCategory}/>
     </div>
     <div className={`${isSidebarOpen ? "ml-[9rem]" : "ml-[2rem]"}  pt-[0.5rem]  text-gray-800`}>
-    <Feed />
+    <Feed  category={category} />
     </div>
     
     </div>

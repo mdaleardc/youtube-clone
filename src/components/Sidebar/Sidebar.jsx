@@ -1,7 +1,6 @@
-import { IoIosHome, IoLogoGameControllerB, IoMdCar, IoIosMusicalNotes } from "react-icons/io";
-import { MdSportsFootball } from "react-icons/md";
-import { SiYoutubeshorts } from "react-icons/si";
-import { GrTechnology, GrBlog } from "react-icons/gr";
+import { IoIosHome, IoLogoGameControllerB, IoIosMusicalNotes } from "react-icons/io";
+import { MdSportsFootball, MdLiveTv } from "react-icons/md";
+import { GrTechnology} from "react-icons/gr";
 import { FaRegNewspaper, FaBlogger } from "react-icons/fa";
 import ismail from "../../assets/ismail.jpg";
 import gerard from "../../assets/gerard.png";
@@ -13,42 +12,42 @@ import cameron from "../../assets/cameron.png"
 
 
 
-const Sidebar = ({isSidebarOpen}) => {
+const Sidebar = ({isSidebarOpen, category, setCategory}) => {
   
   
   return (
     <>
     <div className='mt-[2rem] pl-4 pr-2 pt-[1.5rem] pb-[4rem] w-fit h-screen overflow-y-scroll hide-scrollbar text-gray-800 bg-gray-200 flex flex-col gap-3 tracking-wider font-roboto'>
-    <div className='flex flex-row gap-2 text font-medium cursor-pointer h-[1.5rem]'>
-    <IoIosHome size='20'/>
+    <div className='flex flex-row gap-2 text font-medium cursor-pointer h-[1.5rem]' onClick={()=>setCategory(0)}>
+    <IoIosHome size='20' className={`${category === 0 ? "border-b-[2px] border-red-500" : ""}`}/>
     <p className={`${isSidebarOpen ? "block" : "hidden"}`}>Home</p>
     </div>
-    <div className='flex flex-row gap-2 text font-medium cursor-pointer h-[1.5rem]'>
-    <IoLogoGameControllerB size='20'/>
+    <div className='flex flex-row gap-2 text font-medium cursor-pointer h-[1.5rem]' onClick={()=>setCategory(20)}>
+    <IoLogoGameControllerB size='20' className={`${category === 20 ? "border-b-[2px] border-red-500" : ""}`}/>
     <p className={`${isSidebarOpen ? "block" : "hidden"}`}>Games</p>
     </div>
-    <div className='flex flex-row gap-2 text font-medium cursor-pointer h-[1.5rem]'>
-    <MdSportsFootball size='20'/>
+    <div className='flex flex-row gap-2 text font-medium cursor-pointer h-[1.5rem]' onClick={()=>setCategory(17)}>
+    <MdSportsFootball size='20' className={`${category === 17 ? "border-b-[2px] border-red-500" : ""}`}/>
     <p className={`${isSidebarOpen ? "block" : "hidden"}`}>Sports</p>
     </div>
-    <div className='flex flex-row gap-2 text font-medium cursor-pointer h-[1.5rem]'>
-    <SiYoutubeshorts size='20'/>
-    <p className={`${isSidebarOpen ? "block" : "hidden"}`}>Shorts</p>
+    <div className='flex flex-row gap-2 text font-medium cursor-pointer h-[1.5rem]' onClick={()=>setCategory(24)}>
+    <MdLiveTv size='20' className={`${category === 24 ? "border-b-[2px] border-red-500" : ""}`}/>
+    <p className={`${isSidebarOpen ? "block" : "hidden"}`}>Entertainment</p>
     </div>
-    <div className='flex flex-row gap-2 text font-medium cursor-pointer h-[1.5rem]'>
-    <GrTechnology size='20'/>
+    <div className='flex flex-row gap-2 text font-medium cursor-pointer h-[1.5rem]' onClick={()=>setCategory(28)}>
+    <GrTechnology size='20' className={`${category === 28 ? "border-b-[2px] border-red-500" : ""}`}/>
     <p className={`${isSidebarOpen ? "block" : "hidden"}`}>Technology</p>
     </div>
-    <div className='flex flex-row gap-2 text font-medium cursor-pointer h-[1.5rem]'>
-    <IoIosMusicalNotes size='20'/>
+    <div className='flex flex-row gap-2 text font-medium cursor-pointer h-[1.5rem]' onClick={()=>setCategory(10)}>
+    <IoIosMusicalNotes size='20' className={`${category === 10 ? "border-b-[2px] border-red-500" : ""}`}/>
     <p className={`${isSidebarOpen ? "block" : "hidden"}`}>Musics</p>
     </div>
-    <div className='flex flex-row gap-2 text font-medium cursor-pointer h-[1.5rem]'>
-    <FaBlogger size='20'/>
-    <p className={`${isSidebarOpen ? "block" : "hidden"}`}>Blogging</p>
+    <div className='flex flex-row gap-2 text font-medium cursor-pointer h-[1.5rem]' onClick={()=>setCategory(22)}>
+    <FaBlogger size='20' className={`${category === 22 ? "border-b-[2px] border-red-500" : ""}`}/>
+    <p className={`${isSidebarOpen ? "block" : "hidden"}`}>Blogs</p>
     </div>
-    <div className='flex flex-row gap-2 text font-medium cursor-pointer h-[1.5rem]'>
-    <FaRegNewspaper size='20'/>
+    <div className='flex flex-row gap-2 text font-medium cursor-pointer h-[1.5rem]' onClick={()=>setCategory(25)}>
+    <FaRegNewspaper size='20' className={`${category === 25 ? "border-b-[2px] border-red-500" : ""}`}/>
     <p className={`${isSidebarOpen ? "block" : "hidden"}`}>News</p>
     </div>
     <hr/>
