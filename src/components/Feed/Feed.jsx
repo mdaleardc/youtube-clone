@@ -29,14 +29,14 @@ const Feed = ({category}) => {
   
   return (
     <>
-    <div className='m-[3rem]'>
+    <div className='w-full pr-2 m-[3rem]'>
     <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-y-6 gap-x-4 rounded'>
     {
       data.map((item) => {
         return (
         <div className='bg-gray-200 rounded-xl  p-1'  key={item.id}>
         <Link to={`video/${item.snippet.categoryId}/${item.id}`}>
-        <img src={item.snippet.thumbnails.medium.url} alt={item.snippet.localized.title} className='rounded-md'/>
+        <img src={item.snippet.thumbnails.medium.url} alt={item.snippet.localized.title} className='rounded-md w-full'/>
         </Link>
         <h2 className='text-xl tracking-tight'>{item.snippet.localized.title}</h2>
         <div className='flex flex-row gap-4 items-center'>
