@@ -1,9 +1,6 @@
-import ismail from "../../assets/ismail.jpg";
 import { TbShare3 } from "react-icons/tb";
 import { GiSaveArrow } from "react-icons/gi";
-import { FaThumbsUp } from "react-icons/fa";
-import { FaRegThumbsDown } from "react-icons/fa6";
-import cameron from "../../assets/cameron.png"
+import { FaThumbsUp, FaRegThumbsDown } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { API_KEY, formatViewCount } from "../../data"
 import axios from "axios";
@@ -14,6 +11,8 @@ import moment from "moment";
 const PlayVideo = ({videoId}) => {
   
   const [apiData, setApiData] = useState(null);
+  const [channelData, setChannelData] = useState(null);
+  const [commentData, setCommentData] = useState([]);
   
   
   useEffect(() => {
@@ -27,10 +26,40 @@ const PlayVideo = ({videoId}) => {
       }
     }
     fetchVideoData();
-  }, [videoId])
+  }, [videoId]);
   
-  console.log(apiData);
+  // console.log(apiData);
   
+  useEffect(()=> {
+    const fetchChannelData = async () => {
+      const channelData_url = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${apiData[0].snippet.channelId}&key=${API_KEY}`;
+      try {
+        const response = await axios(channelData_url);
+        setChannelData(response.data.items);
+      } catch (err) {
+        console.error(err.message);
+      }
+    }
+    fetchChannelData();
+  },[apiData, videoId]);
+  
+  //console.log(channelData);
+  
+  
+  useEffect(() => {
+    const fetchCommentData = async () => {
+      const commentData_url = `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&videoId=${videoId}&key=${API_KEY}`;
+      try {
+        const response = await axios(commentData_url);
+        setCommentData(response.data.items);
+      } catch (err) {
+        console.log(err.message)
+      }
+    }
+    fetchCommentData()
+  },[apiData, channelData, videoId]);
+  
+  //console.log(commentData);
   
   return (
     <>
@@ -42,7 +71,7 @@ const PlayVideo = ({videoId}) => {
     <h4  className='m-2'>{apiData? apiData[0].snippet.title : ""}</h4>
     <div className='ml-4'>
     <div className='flex flex-row justify-between items-center'>
-    <p>{formatViewCount(apiData? apiData[0].statistics.viewCount : "")} views &bull; {apiData? moment(apiData[0].snippet.publishedAt).fromNow() : ""} ago</p>
+    <p>{formatViewCount(apiData? apiData[0].statistics.viewCount : "")} views &bull; {apiData? moment(apiData[0].snippet.publishedAt).fromNow() : ""}</p>
     <div className='flex flex-row gap-4 items-center'>
     <span className='flex flex-row gap-1 items-center'><FaThumbsUp size='25'/>{apiData? formatViewCount(apiData[0].statistics.likeCount) : ""}</span>
     <span className='flex flex-row gap-1 items-center'><FaRegThumbsDown size='25'/></span>
@@ -55,49 +84,37 @@ const PlayVideo = ({videoId}) => {
     <div className='m-1 ml-4 flex flex-col gap-4'>
     <div className='flex flex-row justify-between items-center gap-2'>
     <div className='flex flex-row gap-2'>
-    <img src={ismail} alt=''  className='w-[40px] h-[40px] rounded-full align-bottom'/>
+    <img src={channelData?channelData[0].snippet.thumbnails.medium.url:""} className='w-[40px] h-[40px] rounded-full align-bottom channelProfile'/>
     <span>
     <h4 className='text-xl font-medium text-gray-900 align-top'>{apiData?apiData[0].snippet.channelTitle:""}</h4>
-    <span>1M Subscribers</span>
+    <span>{channelData? formatViewCount(channelData[0].statistics.subscriberCount): ""}</span>
     </span>
     </div>
-    <button className='text-white bg-red-600 px-2 rounded-xl'>Subscribe</button>
+    <button className='text-white bg-red-600 px-2 py-1 rounded-lg'>Subscribe</button>
     </div>
     <hr/>
+    
     <h3 className='text-xl font-medium text-gray-800'>{apiData? formatViewCount(apiData[0].statistics.commentCount) : ""}</h3>
-    <div className='flex flex-col'>
-    <span className='flex flex-row items-center gap-2 text-xl font-medium'><img src={cameron} className='w-[40px] h-[40px] rounded-full'/> <h4 className='text-gray-800'>MrBeast</h4> <span className='text-sm font-normal text-gray-500'>2 days ago</span></span>
+    {
+     commentData.map((item) =>{
+       return (
+       <div className='flex flex-col' key={item.id}>
+    <span className='flex flex-row items-center gap-2 text-xl font-medium'><img src={item.snippet.topLevelComment.snippet.authorProfileImageUrl} className='w-[40px] h-[40px] rounded-full'/> <h4 className='text-normal text-gray-800'>{item.snippet.topLevelComment.snippet.authorDisplayName}</h4> <span className='text-sm font-normal text-gray-500'>{moment(item.snippet.topLevelComment.snippet.publishedAt).fromNow()}</span></span>
     <div className='ml-[45px] text-sm font-normal text-gray-700'>
-    <p>Wow this is a very useful content. Thank you</p>
-    <span className='flex flex-row gap-4'><span className='flex flex-row items-center gap-2'><FaThumbsUp size='20'/> 235</span> <span className='flex flex-row items-center gap-2'><FaRegThumbsDown size='20'/></span></span>
+    <p className='overflow-hidden'>{item.snippet.topLevelComment.snippet.textDisplay}</p>
+    <span className='flex flex-row gap-4'><span className='flex flex-row items-center gap-2'><FaThumbsUp size='20'/>{formatViewCount(item.snippet.topLevelComment.snippet.likeCount)}</span> <span className='flex flex-row items-center gap-2'><FaRegThumbsDown size='20'/></span></span>
     </div>
     </div>
-    <div className='w-full flex flex-col'>
-    <span className='flex flex-row items-center gap-2 text-xl font-medium'><img src={cameron} className='w-[40px] h-[40px] rounded-full'/> <h4 className='text-gray-800'>MrBeast</h4> <span className='text-sm font-normal text-gray-500'>2 days ago</span></span>
-    <div className='ml-[45px] text-sm font-normal text-gray-700'>
-    <p>Wow this is a very useful content. Thank you</p>
-    <span className='flex flex-row gap-4'><span className='flex flex-row items-center gap-2'><FaThumbsUp size='20'/> 235</span> <span className='flex flex-row items-center gap-2'><FaRegThumbsDown size='20'/></span></span>
-    </div>
-    </div>
-    <div className='flex flex-col'>
-    <span className='flex flex-row items-center gap-2 text-xl font-medium'><img src={cameron} className='w-[40px] h-[40px] rounded-full'/> <h4 className='text-gray-800'>MrBeast</h4> <span className='text-sm font-normal text-gray-500'>2 days ago</span></span>
-    <div className='ml-[45px] text-sm font-normal text-gray-700'>
-    <p>Wow this is a very useful content. Thank you</p>
-    <span className='flex flex-row gap-4'><span className='flex flex-row items-center gap-2'><FaThumbsUp size='20'/> 235</span> <span className='flex flex-row items-center gap-2'><FaRegThumbsDown size='20'/></span></span>
-    </div>
-    </div>
-    <div className='flex flex-col'>
-    <span className='flex flex-row items-center gap-2 text-xl font-medium'><img src={cameron} className='w-[40px] h-[40px] rounded-full'/> <h4 className='text-gray-800'>MrBeast</h4> <span className='text-sm font-normal text-gray-500'>2 days ago</span></span>
-    <div className='ml-[45px] text-sm font-normal text-gray-700'>
-    <p>Wow this is a very useful content. Thank you</p>
-    <span className='flex flex-row gap-4'><span className='flex flex-row items-center gap-2'><FaThumbsUp size='20'/> 235</span> <span className='flex flex-row items-center gap-2'><FaRegThumbsDown size='20'/></span></span>
-    </div>
-    </div>
+       )
+     })
+    }
+    
     </div>
     </div>
     </div>
     </>
     )
+    
 }
 
 

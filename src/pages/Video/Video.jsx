@@ -15,7 +15,7 @@ const Video = () => {
     <PlayVideo videoId={videoId}/>
     </div>
     <div className='hidden sm:block col-span-4 h-[100vh] overflow-y-scroll'>
-    <Recomended/>
+    <Recomended categoryId={categoryId}/>
     </div>
     </div>
     </>
