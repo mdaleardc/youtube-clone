@@ -38,7 +38,7 @@ const Feed = ({category}) => {
         <Link to={`video/${item.snippet.categoryId}/${item.id}`}>
         <img src={item.snippet.thumbnails.medium.url} alt={item.snippet.localized.title} className='rounded-md w-full'/>
         </Link>
-        <h2 className='text-xl tracking-tight'>{item.snippet.localized.title}</h2>
+        <h2 className='text-xl tracking-tight overflow-hidden'>{item.snippet.localized.title}</h2>
         <div className='flex flex-row gap-4 items-center'>
         <h3 className='font-semibold'>{item.snippet.channelTitle}</h3>
         </div>
