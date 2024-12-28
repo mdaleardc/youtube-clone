@@ -30,17 +30,16 @@ const Recommended = ({categoryId}) => {
     <div className='mt[3rem] pt-[0.3rem] flex flex-col gap-4'>
     {
     recommendedData.map((item)=>{
-    console.log(item);
       return (
       <div className='grid grid-cols-2 gap-1 cursor-pointer' key={item.id}>
     <Link to={`/video/${item.snippet.categoryId}/${item.id}`}>
         <img src={item.snippet.thumbnails.medium.url} alt={item.snippet.localized.title} />
     </Link>
-        <div>
+        <Link to={`/video/${item.snippet.categoryId}/${item.id}`}>
         <h4 className='text-sm'>{item.snippet.localized.title}</h4>
         <h3 className='font-medium'>{item.snippet.channelTitle}</h3>
         <p>{formatViewCount(item.statistics.viewCount)} &bull; {moment(item.snippet.publishedAt).fromNow()} </p>
-        </div>
+        </Link>
     </div>
       )
     })

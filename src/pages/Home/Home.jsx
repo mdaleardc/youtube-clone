@@ -17,7 +17,7 @@ const Home = ({isSidebarOpen}) => {
     <div className='fixed top-0 left-0 z-40'>
     <Sidebar isSidebarOpen={isSidebarOpen} category={category} setCategory={setCategory}/>
     </div>
-    <div className={`${isSidebarOpen ? "ml-[9rem]" : "ml-[2rem]"}  pt-[0.5rem]  text-gray-800`}>
+    <div className={`${isSidebarOpen ? "ml-[8.5rem]" : "ml-[1.5rem]"}  pt-[0.5rem]  text-gray-800`}>
     <Feed  category={category} />
     </div>
     
